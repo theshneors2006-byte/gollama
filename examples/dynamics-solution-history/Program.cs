@@ -3,8 +3,6 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using Microsoft.Identity.Client;
 
-const string DefaultEnvironmentUrl = "https://maccabihealthcareservicesqa.crm4.dynamics.com";
-
 var config = DynamicsConfig.FromEnvironment();
 
 try
@@ -101,7 +99,7 @@ sealed record DynamicsConfig(
 {
     public static DynamicsConfig FromEnvironment()
     {
-        var environmentUrl = ReadOptional("D365_ENVIRONMENT_URL", DefaultEnvironmentUrl).TrimEnd('/');
+        var environmentUrl = ReadRequired("D365_ENVIRONMENT_URL").TrimEnd('/');
         var scopes = ReadOptional("D365_SCOPES", $"{environmentUrl}/user_impersonation")
             .Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 

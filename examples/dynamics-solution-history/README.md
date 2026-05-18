@@ -3,7 +3,7 @@
 דוגמת Console App ב-C# שמתחברת ל-Dynamics 365/Dataverse עם שם משתמש וסיסמה, שולחת את הבקשה:
 
 ```http
-GET https://maccabihealthcareservicesqa.crm4.dynamics.com/api/data/v9.0/msdyn_solutionhistories?$orderby=msdyn_starttime%20desc HTTP/1.1
+GET https://<your-dynamics-environment-url>/api/data/v9.0/msdyn_solutionhistories?$orderby=msdyn_starttime%20desc HTTP/1.1
 ```
 
 ומדפיסה JSON מאוחד עם כל הרשומות שהוחזרו, כולל מעבר אוטומטי על `@odata.nextLink` אם Dataverse מחזיר כמה עמודים.
@@ -21,13 +21,13 @@ export D365_TENANT_ID="<azure-ad-tenant-id>"
 export D365_CLIENT_ID="<public-client-app-registration-client-id>"
 export D365_USERNAME="user@example.com"
 export D365_PASSWORD="<password>"
+export D365_ENVIRONMENT_URL="https://<your-dynamics-environment-url>"
 ```
 
-אופציונלי:
+אופציונלי, אם צריך scope שונה מברירת המחדל שמחושבת מתוך `D365_ENVIRONMENT_URL`:
 
 ```bash
-export D365_ENVIRONMENT_URL="https://maccabihealthcareservicesqa.crm4.dynamics.com"
-export D365_SCOPES="https://maccabihealthcareservicesqa.crm4.dynamics.com/user_impersonation"
+export D365_SCOPES="https://<your-dynamics-environment-url>/user_impersonation"
 ```
 
 ## הרצה
